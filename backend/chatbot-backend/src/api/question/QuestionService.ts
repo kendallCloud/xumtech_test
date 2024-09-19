@@ -31,6 +31,26 @@ export class QuestionService {
     }
   }
 
+  async getAnswer(question: string): Promise<ServiceResponse<string>> {
+    try {
+      console.log("pregunta ++++>",question);
+      const answer = await this.questionRepository.getAnswerAsync(question);
+      
+      if (!answer) {
+        return ServiceResponse.failure("No answer found", "null", StatusCodes.NOT_FOUND);
+      }
+      return ServiceResponse.success<string>("Answer found", answer);
+    } catch (ex) {
+      const errorMessage = `Error finding answer: ${(ex as Error).message}`;
+      logger.error(errorMessage);
+      return ServiceResponse.failure(
+        "An error occurred while retrieving answer.",
+        "null",
+        StatusCodes.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
   // Retrieves a question by ID
   async findById(id: number): Promise<ServiceResponse<Question | null>> {
     try {

@@ -21,6 +21,13 @@ export class QuestionController {
     const serviceResponse = await questionService.findTop5();
     res.status(serviceResponse.statusCode).json(serviceResponse);
   }
+
+  //Get /api/questions/answer
+  async getAnswer(req: Request, res: Response): Promise<void> {
+    console.log("pregunta --++>",req.body);
+    const serviceResponse = await questionService.getAnswer(req.body.question as string);
+    res.status(serviceResponse.statusCode).json(serviceResponse);
+  }
 }
 
 export const questionController = new QuestionController();

@@ -12,5 +12,7 @@ QuestionRouter.get("/top5", (req, res) => questionController.getTop5Questions(re
 
 // GET /api/questions/:id
 QuestionRouter.get("/:id", (req, res) => questionController.getQuestionById(req, res));
+// GET /api/questions/answer/:question
+QuestionRouter.post("/answer/", (req, res) => questionController.getAnswer(req, res));
 
 export default QuestionRouter;
