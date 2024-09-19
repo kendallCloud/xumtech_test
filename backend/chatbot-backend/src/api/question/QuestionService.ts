@@ -33,7 +33,6 @@ export class QuestionService {
 
   async getAnswer(question: string): Promise<ServiceResponse<string>> {
     try {
-      console.log("pregunta ++++>",question);
       const answer = await this.questionRepository.getAnswerAsync(question);
       
       if (!answer) {

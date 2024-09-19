@@ -36,8 +36,11 @@ export class QuestionRepository {
   // Retrieves an answer by question
   async getAnswerAsync(question: string): Promise<string | null> {
     const questions = await this.findAllAsync();
-   
-    let answer = questions.find((q) => q.question === question)?.answer;
+
+    // let answer = questions.find((q) => q.question === question)?.answer;
+
+    const questionMap = new Map(questions.map(q => [q.question, q.answer]));
+    let answer = questionMap.get(question);
     if (!answer) {
       const data = await fs.readFile(this.UnsolvedQuestionsFilePath, "utf-8");
       const unsolvedQuestions = JSON.parse(data).unsolved as string[];

@@ -24,7 +24,6 @@ export class QuestionController {
 
   //Get /api/questions/answer
   async getAnswer(req: Request, res: Response): Promise<void> {
-    console.log("pregunta --++>",req.body);
     const serviceResponse = await questionService.getAnswer(req.body.question as string);
     res.status(serviceResponse.statusCode).json(serviceResponse);
   }
