@@ -1,7 +1,7 @@
 export type Question = {
   id: number;
   question: string;
-  keyWWord: Array<string>;
+  keyWord: Array<string>;
   answer: string;
   frequency: number;
 };

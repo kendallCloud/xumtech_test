@@ -38,7 +38,7 @@ export class QuestionService {
       if (!answer) {
         return ServiceResponse.failure("No answer found", "null", StatusCodes.NOT_FOUND);
       }
-      return ServiceResponse.success<string>("Answer found", answer);
+      return ServiceResponse.success<string>("result obtained", answer);
     } catch (ex) {
       const errorMessage = `Error finding answer: ${(ex as Error).message}`;
       logger.error(errorMessage);
