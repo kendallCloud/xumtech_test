@@ -9,6 +9,18 @@ const Chatbot: React.FC = () => {
     
     const [currentQuestion, setCurrentQuestion] = useState<question | null>(null)
 
+    useState(() => {
+        // Fetch questions from the server
+        fetch('http://localhost:6060/questions/top5')
+            .then((res) => res.json())
+            .then((data) => {
+                setMostCommonQuestions(data.responseObject);
+                console.log(data.responseObject);
+
+            });
+    }
+    ,);
+
     const handleSend = () => {
         if (input.trim() === '') return;
 
@@ -37,10 +49,10 @@ const Chatbot: React.FC = () => {
           <div className = "centeredDiv" >
           <h1>Chatbot</h1>
             <h2>most common questions</h2>
-                <div>
+                <div style={{display:'center'}}>
                     {mostCommonQuestions.map((question, index) => (
                         <div key={index}>
-                            <p>{question.question}</p>
+                            <button className='frequent-questions'>{question.question}</button>
                         </div>
                     ))}
                 </div>

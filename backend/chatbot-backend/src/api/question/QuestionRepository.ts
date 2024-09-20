@@ -40,7 +40,6 @@ export class QuestionRepository {
   
     for (const q of this.questions) {
       // Count how many keywords match by checking Set membership
-      console.log("keyWord===> ",q.keyWord);
       const score = q.keyWord.filter((keyword:String) => queryKeywordsSet.has(keyword.toLowerCase())).length;
   
       // If this question has more matches, update the best match
@@ -96,7 +95,6 @@ export class QuestionRepository {
   // Retrieves top 5 questions
   async findTop5Async(): Promise<Question[]> {
     const questions = await this.findAllAsync();
-    console.log(questions);
     return questions.slice(0, 5);
   }
 }

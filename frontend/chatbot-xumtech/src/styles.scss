@@ -7,8 +7,13 @@ $items-alignment: center;
 
 .row{
   display: flex;
-  gap: 48px;
+  gap: 0px;
   
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .module-border-wrap {
@@ -20,6 +25,16 @@ $items-alignment: center;
   min-width: 50%;
 }
 
+.frequent-questions {
+  display: $grid-display;
+  place-items: $items-alignment;
+  padding: 1rem;
+  border-radius: 1px;
+  margin: 0 auto;
+  max-width: 75%;
+  max-height: 25%;
+}
+
 button:hover {
   background-color: linear-gradient(90deg, rgba(3,40,109,1) 12%, rgba(239,51,64,1) 49%, rgba(255,255,255,1) 100%);
 }
@@ -27,11 +42,9 @@ button:hover {
     display: $grid-display;
     background-color:#202B38;
     place-items: $items-alignment;
-    padding: 5%;
 
     input { /* Targeting inputs specifically */
-      width: 70%; /* Increase input width */
-      color: red; /* Turn text red */
+      width: 50%; /* Increase input width */
     }
 
   }
