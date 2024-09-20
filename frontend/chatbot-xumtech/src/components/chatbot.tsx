@@ -53,7 +53,7 @@ const Chatbot: React.FC = () => {
         <div className='module-border-wrap'>
           <div className = "centeredDiv" >
           <h1>Chatbot</h1>
-                <div style={{display:'center'}}>
+                <div className='frequent-questions-container'>
                     {mostCommonQuestions.map((q, index) => (
                         <div key={index}>
                             <button className='frequent-questions' onClick={() => handleCommonQuestionClick(q.question)}>{q.question}</button>

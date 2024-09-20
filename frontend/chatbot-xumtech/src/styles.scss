@@ -21,19 +21,27 @@ $items-alignment: center;
   position: relative;
   background: rgb(3,40,109);
   background: linear-gradient(90deg, rgba(3,40,109,1) 12%, rgba(239,51,64,1) 49%, rgba(255,255,255,1) 100%);
-  padding: 3px;
+  padding: 2px;
   min-width: 50%;
 }
 
-.frequent-questions {
-  display: $grid-display;
-  place-items: $items-alignment;
-  padding: 1rem;
-  border-radius: 1px;
-  margin: 0 auto;
-  max-width: 50%;
-  max-height: 15%;
+.frequent-questions-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr)); /* Maximum of 3 items per row */
+  gap: 1rem; /* Add some space between the items */
+  justify-items: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
 }
+
+.frequent-questions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: small;
+  border-radius: 1px;
+}
+
 
 button:hover {
   background-color: linear-gradient(90deg, rgba(3,40,109,1) 12%, rgba(239,51,64,1) 49%, rgba(255,255,255,1) 100%);
@@ -48,17 +56,16 @@ button:hover {
     }
 
   }
-
   .bubbleContainer {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    width: 100%;
+    overflow-y: auto
   }
 
 
   .bubbleUser {
-      background-color: #DCF8C6;
+      background-color: #03101b;
       align-self: flex-end;
       color: #202B38;
       padding: 8px 12px;
@@ -88,7 +95,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    height: 100vh;
     overflow-y: auto;
   }
 
