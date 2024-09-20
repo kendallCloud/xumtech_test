@@ -44,11 +44,15 @@ const Chatbot: React.FC = () => {
         return data;
     };
 
+    const handleSendQuestion = async (message: string) => {
+        const botResponse = await getBotResponse(message);
+        setMessages([...messages, { user: message, bot: botResponse.responseObject }]);
+    };
+
     return (
         <div className='module-border-wrap'>
           <div className = "centeredDiv" >
           <h1>Chatbot</h1>
-            <h2>most common questions</h2>
                 <div style={{display:'center'}}>
                     {mostCommonQuestions.map((q, index) => (
                         <div key={index}>
@@ -57,23 +61,29 @@ const Chatbot: React.FC = () => {
                     ))}
                 </div> 
             <div>
-                {messages.map((msg, index) => (
-                    <div key={index}>
-                        <p><strong>You:</strong> {msg.user}</p>
-                        <p><strong>Bot:</strong> {msg.bot}</p>
-                    </div>
-                ))}
+                <br/>
+                <h2>Chat</h2>
+                <div className='chatContainer'>
+                    {messages.map((msg, index) => (
+                        <div key={index} className='bubbleContainer'>
+                            <div className='bubbleUser'>{msg.user}</div>
+                            <br/>
+                            <div className='bubbleBot'>{msg.bot}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
             <br />
             <input
                 type="text"
                 ref={inputRef}
-                placeholder="Type your message..."
             />
             <button onClick={() => { 
-                const message = inputRef.current?.value || '';
-                getBotResponse(message);
-            }}>Send</button>
+                const question = inputRef.current?.value || '';
+
+                handleSendQuestion(question);
+                !question || question==='' &&  getBotResponse(question);
+            }}>Enviar</button>
         </div>
           </div>
         

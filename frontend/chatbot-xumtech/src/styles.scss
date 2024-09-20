@@ -49,6 +49,49 @@ button:hover {
 
   }
 
+  .bubbleContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+
+  .bubbleUser {
+      background-color: #DCF8C6;
+      align-self: flex-end;
+      color: #202B38;
+      padding: 8px 12px;
+      border-radius: 10px 10px 0 10px;
+      max-width: 60%;
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 5px;
+      word-wrap: break-word;
+  }
+  
+  .bubbleBot {
+    background-color: #FFFFFF;
+    align-self: flex-start;
+    color: #202B38;
+    padding: 8px 12px;
+    border-radius: 10px 10px 10px 0;
+    border: 1px solid #E5E5EA;
+    max-width: 60%;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+  }
+
+  .chatContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
   .logoHeader {
     display: $grid-display;
     place-items: $items-alignment;
