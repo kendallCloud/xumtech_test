@@ -1,0 +1,18 @@
+$cr-flag-blue: #00205B;
+$cr-flag-white: #FFFFFF;
+$cr-flag-red: #EF3340;
+$container-border: 5px solid;
+$grid-display: grid;
+$items-alignment: center;
+
+
+
+:export {
+    flag_blue: $cr-flag-blue;
+    flag_white: $cr-flag-white;
+    flag_red: $cr-flag-red;
+    container_border: $container-border;
+    grid_display: $grid-display;
+    items_alignment: $items-alignment;
+    
+}

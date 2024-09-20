@@ -1,0 +1,52 @@
+$cr-flag-blue: #03286d;
+$cr-flag-white: #FFFFFF;
+$cr-flag-red: #EF3340;
+$container-border: 5px solid;
+$grid-display: grid;
+$items-alignment: center;
+
+.row{
+  display: flex;
+  gap: 48px;
+  
+}
+
+.module-border-wrap {
+  padding: 1rem;
+  position: relative;
+  background: rgb(3,40,109);
+  background: linear-gradient(90deg, rgba(3,40,109,1) 12%, rgba(239,51,64,1) 49%, rgba(255,255,255,1) 100%);
+  padding: 3px;
+  min-width: 50%;
+}
+
+button:hover {
+  background-color: linear-gradient(90deg, rgba(3,40,109,1) 12%, rgba(239,51,64,1) 49%, rgba(255,255,255,1) 100%);
+}
+.centeredDiv {
+    display: $grid-display;
+    background-color:#202B38;
+    place-items: $items-alignment;
+    padding: 5%;
+
+    input { /* Targeting inputs specifically */
+      width: 70%; /* Increase input width */
+      color: red; /* Turn text red */
+    }
+
+  }
+
+  .logoHeader {
+    display: $grid-display;
+    place-items: $items-alignment;
+    max-width: 25%;
+  }
+
+  .table {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    color: $cr-flag-white;
+    border: $cr-flag-red;
+  
+  } 
