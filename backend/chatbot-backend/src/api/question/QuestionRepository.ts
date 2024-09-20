@@ -32,7 +32,10 @@ export class QuestionRepository {
 
   //async addQuestionAsync(question: Question): Promise<void> {
 
-   findBestAnswer  = (query: string): string | undefined => {
+   findBestAnswer  = (query: string): string => {
+    if (!query) {
+      return 'error';
+    }
     const queryKeywordsSet = new Set(query.toLowerCase().split(/\s+/)); // Convert query words to a Set
   
     let bestMatch: Question | undefined;
@@ -50,7 +53,7 @@ export class QuestionRepository {
     }
   
     // Return the best matching answer, undefined if no match
-    return bestMatch?.answer;
+    return bestMatch?.answer || 'no answer found';
   }
 
   
@@ -77,6 +80,7 @@ export class QuestionRepository {
 
     const questionMap = new Map(questions.map(q => [q.question, q.answer]));
     let answer = questionMap.get(question) ;
+    console.log('ANSWER===>',answer);
     answer =  !answer? this.findBestAnswer(question) : answer;
 
 

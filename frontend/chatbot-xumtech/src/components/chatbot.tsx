@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useRef} from 'react';
 import  {question}  from '../utils/types/questionType';
 
 const Chatbot: React.FC = () => {
     const [messages, setMessages] = useState<{ user: string; bot: string }[]>([]);
-    const [input, setInput] = useState('')
     const [questions, setQuestions] = useState<question[]>([]);
     const [mostCommonQuestions, setMostCommonQuestions] = useState<question[]>([]);
-    
+    const inputRef = useRef<HTMLInputElement>(null);
     const [currentQuestion, setCurrentQuestion] = useState<question | null>(null)
 
     useState(() => {
@@ -21,27 +20,28 @@ const Chatbot: React.FC = () => {
     }
     ,);
 
-    const handleSend = () => {
-        if (input.trim() === '') return;
-
-        const userMessage = input;
-        const botResponse = getBotResponse(userMessage);
-
-        setMessages([...messages, { user: userMessage, bot: botResponse }]);
-        setInput('');
+    const handleCommonQuestionClick = (questionText: string) => {
+        if (inputRef.current) {
+            inputRef.current.value = questionText;
+        }
     };
 
-    const getBotResponse = (message: string): string => {
-        switch (message.toLowerCase()) {
-            case 'hello':
-                return 'Hi there! How can I help you today?';
-            case 'how are you?':
-                return 'I am just a bot, but I am here to help you!';
-            case 'what is your name?':
-                return 'I am your friendly chatbot!';
-            default:
-                return 'Sorry, I did not understand that.';
+    const getBotResponse = async (question: string) => {
+        const response = await fetch(`http://localhost:6060/questions/answer/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ question }),
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+    
+        const data = await response.json();
+        console.log("----->>>",data);
+        return data;
     };
 
     return (
@@ -50,12 +50,12 @@ const Chatbot: React.FC = () => {
           <h1>Chatbot</h1>
             <h2>most common questions</h2>
                 <div style={{display:'center'}}>
-                    {mostCommonQuestions.map((question, index) => (
+                    {mostCommonQuestions.map((q, index) => (
                         <div key={index}>
-                            <button className='frequent-questions'>{question.question}</button>
+                            <button className='frequent-questions' onClick={() => handleCommonQuestionClick(q.question)}>{q.question}</button>
                         </div>
                     ))}
-                </div>
+                </div> 
             <div>
                 {messages.map((msg, index) => (
                     <div key={index}>
@@ -64,13 +64,16 @@ const Chatbot: React.FC = () => {
                     </div>
                 ))}
             </div>
+            <br />
             <input
                 type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
+                ref={inputRef}
                 placeholder="Type your message..."
             />
-            <button onClick={handleSend}>Send</button>
+            <button onClick={() => { 
+                const message = inputRef.current?.value || '';
+                getBotResponse(message);
+            }}>Send</button>
         </div>
           </div>
         
