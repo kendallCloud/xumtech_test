@@ -8,6 +8,12 @@ export class QuestionController {
     const serviceResponse = await questionService.findAll();
     res.status(serviceResponse.statusCode).json(serviceResponse);
   }
+//GET /api/questions/unsolved
+  async getAllunsolvedQuestions(req: Request, res: Response): Promise<void> {
+    console.log("controller /questions/unsolved hit");
+    const serviceResponse = await questionService.findAllunsolvedQuestions();
+    res.status(serviceResponse.statusCode).json(serviceResponse);
+  }
 
   // GET /api/questions/:id
   async getQuestionById(req: Request, res: Response): Promise<void> {

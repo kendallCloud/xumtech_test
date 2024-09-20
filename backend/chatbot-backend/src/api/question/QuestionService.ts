@@ -31,6 +31,27 @@ export class QuestionService {
     }
   }
 
+  async findAllunsolvedQuestions(): Promise<ServiceResponse<string[] | null>> {
+    try {
+      console.log("inside service /unsolved");
+      const questions = await this.questionRepository.findAllunsolvedQuestionsAsync();
+      if (!questions || questions.length === 0) {
+        logger.warn("No unsolved questions found");
+        return ServiceResponse.failure("No questions found here", null, StatusCodes.NOT_FOUND);
+      }
+      logger.info("Unsolved questions found successfully");
+      return ServiceResponse.success<string[]>("Questions found", questions);
+    } catch (ex) {
+      const errorMessage = `Error finding all questions: ${(ex as Error).message}`;
+      logger.error(errorMessage);
+      return ServiceResponse.failure(
+        "An error occurred while retrieving questions.",
+        null,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
   async getAnswer(question: string): Promise<ServiceResponse<string>> {
     try {
       const answer = await this.questionRepository.getAnswerAsync(question);

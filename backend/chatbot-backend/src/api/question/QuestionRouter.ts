@@ -4,15 +4,20 @@ import { questionController } from "./QuestionController";
 
 const QuestionRouter = Router();
 
-// GET /api/questions
+QuestionRouter.get('/unsolved', (req, res) => {
+    console.log("Route handler /api/questions/unsolved hit");
+    questionController.getAllunsolvedQuestions(req, res);
+  });
+
+// GET /questions
 QuestionRouter.get("/", (req, res) => questionController.getAllQuestions(req, res));
 
-// GET /api/questions/top5
+// GET /questions/top5
 QuestionRouter.get("/top5", (req, res) => questionController.getTop5Questions(req, res));
 
-// GET /api/questions/:id
+// GET /questions/:id
 QuestionRouter.get("/:id", (req, res) => questionController.getQuestionById(req, res));
-// GET /api/questions/answer/:question
-QuestionRouter.post("/answer/", (req, res) => questionController.getAnswer(req, res));
+// GET /questions/answer/:question
+QuestionRouter.post("/answer", (req, res) => questionController.getAnswer(req, res));
 
 export default QuestionRouter;

@@ -25,6 +25,12 @@ export class QuestionRepository {
     return JSON.parse(data).questions as Question[];
   }
 
+  async findAllunsolvedQuestionsAsync(): Promise<string[]> {
+    const data = await fs.readFile(this.UnsolvedQuestionsFilePath, "utf-8");
+    return JSON.parse(data).unsolvedQuestions as string[];
+  }
+
+  //async addQuestionAsync(question: Question): Promise<void> {
 
    findBestAnswer  = (query: string): string | undefined => {
     const queryKeywordsSet = new Set(query.toLowerCase().split(/\s+/)); // Convert query words to a Set
