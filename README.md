@@ -9,6 +9,8 @@ Hi, I'm Kendall Granados B. , i'm a software engineer and this my proposed solut
  * expressJS
  * TypeScript
  * Swigger for docs
+ * pino-http for logs
+   
  ## Features
 * API Design: RESTful APIs following standard practices.
 * TypeScript: Strong typing and easier debugging.
