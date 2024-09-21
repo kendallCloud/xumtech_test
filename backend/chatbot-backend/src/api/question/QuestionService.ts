@@ -31,6 +31,22 @@ export class QuestionService {
     }
   }
 
+  async addQuestion(question: Question): Promise<ServiceResponse<Question | null>> {
+    try {
+      await this.questionRepository.addQuestionAsync(question);
+      return ServiceResponse.success<Question>("Question added successfully", question);
+    } catch (ex) {
+      const errorMessage = `Error adding question: ${(ex as Error).message}`;
+      logger.error(errorMessage);
+      return ServiceResponse.failure(
+        "An error occurred while adding the question.",
+        null,
+        StatusCodes.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+
   async findAllunsolvedQuestions(): Promise<ServiceResponse<string[] | null>> {
     try {
       console.log("inside service /unsolved");

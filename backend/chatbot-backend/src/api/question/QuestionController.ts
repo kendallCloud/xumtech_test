@@ -33,6 +33,12 @@ export class QuestionController {
     const serviceResponse = await questionService.getAnswer(req.body.question as string);
     res.status(serviceResponse.statusCode).json(serviceResponse);
   }
+
+  // POST /api/question/newAnswer
+  async addQuestion(req: Request, res: Response): Promise<void> {
+    const serviceResponse = await questionService.addQuestion(req.body);
+    res.status(serviceResponse.statusCode).json(serviceResponse);
+  }
 }
 
 export const questionController = new QuestionController();

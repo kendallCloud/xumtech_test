@@ -7,6 +7,8 @@ export class QuestionRepository {
   private QuestionsFilePath: string;
   private UnsolvedQuestionsFilePath: string;
   private questions: Question[] = [];
+  //make singleton
+  private static instance: QuestionRepository;
 
 
   constructor() {
@@ -30,7 +32,12 @@ export class QuestionRepository {
     return JSON.parse(data).unsolvedQuestions as string[];
   }
 
-  //async addQuestionAsync(question: Question): Promise<void> {
+  async addQuestionAsync(question: Question): Promise<void> {
+    const data = await fs.readFile(this.QuestionsFilePath, "utf-8");
+    const questions = JSON.parse(data).questions as Question[];
+    questions.push(question);
+    fs.writeFile(this.QuestionsFilePath, JSON.stringify({ questions }), "utf-8");
+  }
 
    findBestAnswer  = (query: string): string | undefined => {
     if (!query) {

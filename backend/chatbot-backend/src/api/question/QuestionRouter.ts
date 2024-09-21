@@ -119,6 +119,13 @@ QuestionRouter.get('/unsolved', (req, res) => {
     questionController.getAllunsolvedQuestions(req, res);
   });
 
+  
+
+  QuestionRouter.get('/newAnswer', (req, res) => {
+    console.log("Route handler /api/questions/newAnswer hit");
+    questionController.addQuestion(req, res);
+  });
+
 // GET /questions
 QuestionRouter.get("/", (req, res) => questionController.getAllQuestions(req, res));
 
@@ -129,5 +136,6 @@ QuestionRouter.get("/top5", (req, res) => questionController.getTop5Questions(re
 QuestionRouter.get("/:id", (req, res) => questionController.getQuestionById(req, res));
 // GET /questions/answer/:question
 QuestionRouter.post("/answer", (req, res) => questionController.getAnswer(req, res));
+
 
 export default QuestionRouter;
