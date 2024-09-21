@@ -45,7 +45,7 @@ export class QuestionRepository {
     if (!query) {
       return 'error';
     }
-    const queryKeywordsSet = new Set(query.toLowerCase().split(/\s+/)); // Convert query words to a Set
+    const queryKeywordsSet = new Set(query.toLowerCase().split(/\s+/));
   
     let bestMatch: Question | undefined;
     let maxScore = 0;

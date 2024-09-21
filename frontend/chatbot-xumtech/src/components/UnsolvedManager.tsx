@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SweetAlert2 from 'react-sweetalert2';
+import Swal from 'sweetalert2';
 
 const UnsolvedManager: React.FC = () => {
   
@@ -48,6 +50,12 @@ const UnsolvedManager: React.FC = () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+
+                Swal.fire({
+                    title: 'Answer submitted',
+                    icon: 'success',
+                });
+                
             } catch (error) {
                 console.error('Error submitting answer:', error);
             }
@@ -70,7 +78,7 @@ const UnsolvedManager: React.FC = () => {
                     <h2>Answer Question</h2>
                     <p>{selectedQuestion}</p>
                     <textarea value={answer} onChange={handleAnswerChange} />
-                    <button onClick={handleSubmitAnswer}>Submit Answer</button>
+                    <button onClick={handleSubmitAnswer}>Guardar pregunta</button>
                 </div>
             )}
         </div>

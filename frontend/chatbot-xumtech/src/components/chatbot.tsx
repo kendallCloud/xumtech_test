@@ -7,16 +7,19 @@ const Chatbot: React.FC = () => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        // Fetch questions from the server
-        fetch('http://localhost:6060/questions/top5')
-            .then((res) => res.json())
-            .then((data) => {
+        const fetchQuestions = async () => {
+            try {
+                const res = await fetch('http://localhost:6060/questions/top5');
+                const data = await res.json();
                 setMostCommonQuestions(data.responseObject);
                 console.log(data.responseObject);
+            } catch (error) {
+                console.error('Error fetching questions:', error);
+            }
+        };
 
-            });
-    }
-    ,);
+        fetchQuestions();
+    }, []);
 
     const handleCommonQuestionClick = (questionText: string) => {
         if (inputRef.current) {
