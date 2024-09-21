@@ -61,8 +61,6 @@ const Chatbot: React.FC = () => {
                     ))}
                 </div> 
             <div>
-                <br/>
-                <h2>Chat</h2>
                 <div className='chatContainer'>
                     {messages.map((msg, index) => (
                         <div key={index} className='bubbleContainer'>

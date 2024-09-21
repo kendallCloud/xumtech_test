@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <>
-      <img style={{ maxWidth: '25%', paddingLeft: '25%' }} src="/banking.svg" alt="SVG LOGO" />
+      <img style={{ maxWidth: '25%', paddingLeft: '40%' }} src="/banking.svg" alt="SVG LOGO" />
       <div className="button-container">
         <button className="right-button" onClick={() => {
           setShowChatbot(true)
