@@ -19,8 +19,6 @@ $items-alignment: center;
 .module-border-wrap {
   padding: 1rem;
   position: relative;
-  background: rgb(3,40,109);
-  background: linear-gradient(90deg, rgba(3,40,109,1) 12%, rgba(239,51,64,1) 49%, rgba(255,255,255,1) 100%);
   padding: 2px;
   min-width: 50%;
 }
@@ -65,7 +63,7 @@ button:hover {
 
 
   .bubbleUser {
-      background-color: #03101b;
+      background-color: #96a3ad;
       align-self: flex-end;
       color: #202B38;
       padding: 8px 12px;
@@ -104,11 +102,49 @@ button:hover {
     max-width: 25%;
   }
 
-  .table {
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    color: $cr-flag-white;
-    border: $cr-flag-red;
+  .button-container {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform: translateY(-50%);
+  }
   
-  } 
+  .right-button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  // Custom styles for SweetAlert2
+.no-border {
+  background: none !important;   // Remove modal background
+  box-shadow: none !important;   // Remove modal shadow
+  border: none !important;       // Remove modal border
+  padding: 0 !important;         // Remove modal padding
+}
+
+.swal2-popup {
+  width: auto !important;        // Adjust width to content
+  height: auto !important;       // Adjust height to content
+  max-width: none !important;    // Remove max-width limit
+  background: transparent !important; // Make background transparent
+  padding: 0 !important;         // Remove default padding
+}
+
+.swal2-html-container {
+  padding: 0 !important;         // Remove padding inside the content container
+}
+
+.swal2-backdrop-show {
+  background: none !important;   // Remove the dark backdrop
+}
