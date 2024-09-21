@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { question } from '../utils/types/questionType';
 
 const UnsolvedManager: React.FC = () => {
-    const answerRef = useRef<HTMLTextAreaElement>(null);
   
     const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
     const [answer, setAnswer] = useState<string>('');

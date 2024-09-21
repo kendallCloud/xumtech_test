@@ -1,14 +1,12 @@
-import React, { useState , useRef} from 'react';
+import React, { useState , useRef, useEffect} from 'react';
 import  {question}  from '../utils/types/questionType';
 
 const Chatbot: React.FC = () => {
     const [messages, setMessages] = useState<{ user: string; bot: string }[]>([]);
-    const [questions, setQuestions] = useState<question[]>([]);
     const [mostCommonQuestions, setMostCommonQuestions] = useState<question[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
-    const [currentQuestion, setCurrentQuestion] = useState<question | null>(null)
 
-    useState(() => {
+    useEffect(() => {
         // Fetch questions from the server
         fetch('http://localhost:6060/questions/top5')
             .then((res) => res.json())
