@@ -17,8 +17,8 @@ export default function App() {
         }
           }>Chatbot</button>
         <button className="right-button" onClick={() => {
-          setShowChatbot(true)
-          setShowUnsolvedManager(false)
+          setShowChatbot(false)
+          setShowUnsolvedManager(true)
         }}>Unsolved Manager</button>
       </div>
 
