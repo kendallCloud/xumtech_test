@@ -34,6 +34,7 @@ export class QuestionService {
   async addQuestion(question: Question): Promise<ServiceResponse<Question | null>> {
     try {
       await this.questionRepository.addQuestionAsync(question);
+      logger.info("Question added successfully");
       return ServiceResponse.success<Question>("Question added successfully", question);
     } catch (ex) {
       const errorMessage = `Error adding question: ${(ex as Error).message}`;
@@ -46,7 +47,6 @@ export class QuestionService {
     }
   }
 
-
   async findAllunsolvedQuestions(): Promise<ServiceResponse<string[] | null>> {
     try {
       console.log("inside service /unsolved");
@@ -55,7 +55,8 @@ export class QuestionService {
         logger.warn("No unsolved questions found");
         return ServiceResponse.failure("No questions found here", null, StatusCodes.NOT_FOUND);
       }
-      logger.info("Unsolved questions found successfully");
+      console.log("unsolved questions found ",questions.length);
+      logger.info("Unsolved questions found successfully ");
       return ServiceResponse.success<string[]>("Questions found", questions);
     } catch (ex) {
       const errorMessage = `Error finding all questions: ${(ex as Error).message}`;

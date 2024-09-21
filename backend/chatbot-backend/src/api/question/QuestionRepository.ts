@@ -29,7 +29,9 @@ export class QuestionRepository {
 
   async findAllunsolvedQuestionsAsync(): Promise<string[]> {
     const data = await fs.readFile(this.UnsolvedQuestionsFilePath, "utf-8");
-    return JSON.parse(data).unsolvedQuestions as string[];
+    //remove repeated questions
+    const unsolvedQuestions = JSON.parse(data).unsolvedQuestions as string[];
+    return Array.from(new Set(unsolvedQuestions));
   }
 
   async addQuestionAsync(question: Question): Promise<void> {
