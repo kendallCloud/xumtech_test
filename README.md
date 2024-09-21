@@ -3,6 +3,12 @@ Hi, I'm Kendall Granados B. , i'm a software engineer and this my proposed solut
 
 ## Backend Project
  backend solution developed for the Xumtech chatbot test. It implements RESTful APIs to manage chatbot functionality and is built with TypeScript for better scalability and type safety.
+
+ # Stack:
+ * nodejs
+ * expressJS
+ * TypeScript
+ * Swigger for docs
  ## Features
 * API Design: RESTful APIs following standard practices.
 * TypeScript: Strong typing and easier debugging.
