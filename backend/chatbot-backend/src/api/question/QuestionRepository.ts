@@ -109,6 +109,7 @@ export class QuestionRepository {
   // Retrieves top 5 questions
   async findTop5Async(): Promise<Question[]> {
     const questions = await this.findAllAsync();
+    questions.sort((a, b) => b.frequency - a.frequency);
     return questions.slice(0, 5);
   }
 }
