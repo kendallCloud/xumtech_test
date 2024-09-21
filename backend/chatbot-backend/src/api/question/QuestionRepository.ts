@@ -32,7 +32,7 @@ export class QuestionRepository {
 
   //async addQuestionAsync(question: Question): Promise<void> {
 
-   findBestAnswer  = (query: string): string => {
+   findBestAnswer  = (query: string): string | undefined => {
     if (!query) {
       return 'error';
     }
@@ -53,7 +53,7 @@ export class QuestionRepository {
     }
   
     // Return the best matching answer, undefined if no match
-    return bestMatch?.answer || 'no answer found';
+    return bestMatch?.answer || undefined;
   }
 
   
@@ -85,6 +85,7 @@ export class QuestionRepository {
 
 
     if (!answer) {
+      console.log('unsolved question===>',question);
       //TRY to find the best match using keywords
 
       const data = await fs.readFile(this.UnsolvedQuestionsFilePath, "utf-8");
